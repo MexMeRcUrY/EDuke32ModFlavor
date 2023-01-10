@@ -34,15 +34,20 @@ namespace MBlood_ModDocumentation
     /*
      * For Models the will default Scale 1 and Shade 1 if not specify 
      * */
-    public partial class MbloodDocGenForm : Form
+    public partial class MODDocGenForm : Form
     {
-        public MbloodDocGenForm()
+        StringBuilder errorMsg = new StringBuilder();
+        StringBuilder debugMsg = new StringBuilder();
+
+        public MODDocGenForm()
         {
             InitializeComponent();
-            //debug
+            //TODO: Delete debug
             txtSourceFolderPath.Text = @"C:\Users\Mercury\Desktop\trash\autoload";
             txtModCSVPath.Text = @"C:\\Users\\Mercury\\Desktop\\trash\\MBlood HD - List.csv";
             txtModOutputPath.Text = @"C:\Users\Mercury\Desktop\trash\output";
+            txtDEFSource.Text = "C:\\Users\\Mercury\\Desktop\\trash\\autoload\\models\\Deco\\Deco.def";
+            txtDEFCSVOutput.Text = "C:\\Users\\Mercury\\Desktop\\trash";
             //defaults
             chkListExportIntems.SetItemCheckState(0, CheckState.Checked);
             chkListExportIntems.SetItemCheckState(1, CheckState.Unchecked);
@@ -90,8 +95,7 @@ namespace MBlood_ModDocumentation
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             string SYSCHAR = "~";
-            StringBuilder errorMsg = new StringBuilder();
-            StringBuilder debugMsg = new StringBuilder();
+            
             richTxtOutputMsg.Text = string.Empty;
 
 
@@ -176,23 +180,8 @@ namespace MBlood_ModDocumentation
                 {
                     int fieldCount = csv.FieldCount;
                     string[] headers = csv.GetFieldHeaders().Select(x => x.ToUpper()).ToArray<string>();
-                    string[] mandtoryCSVFields = new string[] {
-                        SYSCHAR+"MODNAME",
-                        SYSCHAR+"TYPE",
-                        SYSCHAR+"TILENUMBER",
-                        SYSCHAR+"CATEGORY",
-                        SYSCHAR+"DESCRIPTION",
-                        SYSCHAR+"FILENAME",
-                        SYSCHAR+"FILEEXTENSION",
-                        SYSCHAR+"IMAGEMODE",
-                        SYSCHAR+"PALLETNUMBER",
-                        SYSCHAR+"SCALE",
-                        SYSCHAR+"SHADE",
-                        SYSCHAR+"FRAMENAME",
-                        SYSCHAR+"SKINFILENAME",
-                        SYSCHAR + "SKINFILEEXTENSION"}.Select(x => x.ToUpper()).ToArray<string>();
 
-                    foreach (string m in mandtoryCSVFields)
+                    foreach (string m in DefParser.mandtoryCSVFields)
                     {
                         if (!Array.Exists(headers, x => x.Contains(m, StringComparison.OrdinalIgnoreCase)))
                         {
@@ -804,6 +793,37 @@ namespace MBlood_ModDocumentation
                     richTxtOutputMsg.AppendText("Completed successfully.");
                 }
             }
+
+        }
+
+        private void btnDEFGenCSV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DefParser defParser = new DefParser();
+                StringBuilder errorMsg;
+                defParser.ReadDEF(txtDEFSource.Text, out errorMsg);
+                if(errorMsg != null && errorMsg.Length > 0)
+                {
+                    richDEF2CSVOutputMsg.Text = errorMsg.ToString();
+                }
+                defParser.WriteOutput(txtDEFCSVOutput.Text,"BUILDMyFlavor");
+            }
+            catch(Exception ex)
+            {
+                errorMsg.AppendLine(ex.Message);
+                richDEF2CSVOutputMsg.Text = errorMsg.ToString();
+            }
+        }
+
+        private void btnExportTemplate_Click(object sender, EventArgs e)
+        {
+            string outputPath = txtTemplateOutput.Text;
+            if (string.IsNullOrWhiteSpace(outputPath))
+            {
+                MessageBox.Show("Output path is required.");
+            }
+
 
         }
     }
