@@ -1,4 +1,4 @@
------------------------------------NOT RELEASED YET DO NOT TRY TO USE IT------------------------------------------------------------
+WARNING:--------NOT FINISHED,  DO NOT TRY TO USE IT---
 
 
 EDuke32 MOD Documentation tool I created for my project MBlood that include Modern features Enhanced Resolution Sprites and 3D Models.
