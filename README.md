@@ -1,3 +1,6 @@
+-----------------------------------NOT RELEASED YET DO NOT TRY TO USE IT------------------------------------------------------------
+
+
 EDuke32 MOD Documentation tool I created for my project MBlood that include Modern features Enhanced Resolution Sprites and 3D Models.
 Based in the Nblood Port Code and EDuke32
 You can find more documentatino in the git hub Wiki
