@@ -287,7 +287,7 @@
             this.tabDEFReverseEng.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabDEFReverseEng.Size = new System.Drawing.Size(1149, 745);
             this.tabDEFReverseEng.TabIndex = 1;
-            this.tabDEFReverseEng.Text = "DEF Reverse Eng";
+            this.tabDEFReverseEng.Text = "DEF --> CSV";
             this.tabDEFReverseEng.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -409,7 +409,7 @@
             this.btnTemplateOut.Text = "Template Output Folder";
             this.btnTemplateOut.UseVisualStyleBackColor = true;
             // 
-            // MbloodDocGenForm
+            // MODDocGenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -417,8 +417,8 @@
             this.Controls.Add(this.TabTemplateExample);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "MbloodDocGenForm";
-            this.Text = "EDuke32 MOD DOCUMENTATION";
+            this.Name = "MODDocGenForm";
+            this.Text = "EDuke32 MOD DOCUMENTATION (DEF) DEF language (CSV) comma separated value file";
             this.TabTemplateExample.ResumeLayout(false);
             this.tabModGen.ResumeLayout(false);
             this.tabModGen.PerformLayout();

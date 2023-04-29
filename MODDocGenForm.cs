@@ -43,11 +43,11 @@ namespace MBlood_ModDocumentation
         {
             InitializeComponent();
             //TODO: Delete debug
-            txtSourceFolderPath.Text = @"C:\Users\Mercury\Desktop\trash\autoload";
-            txtModCSVPath.Text = @"C:\\Users\\Mercury\\Desktop\\trash\\MBlood HD - List.csv";
-            txtModOutputPath.Text = @"C:\Users\Mercury\Desktop\trash\output";
-            txtDEFSource.Text = "C:\\Users\\Mercury\\Desktop\\trash\\autoload\\models\\Deco\\Deco.def";
-            txtDEFCSVOutput.Text = "C:\\Users\\Mercury\\Desktop\\trash";
+            txtSourceFolderPath.Text = @"C:\Users\Mercury\OneDrive\Escritorio\trash\autoload";
+            txtModCSVPath.Text = @"C:\Users\Mercury\OneDrive\Escritorio\trash\MBlood HD - List.csv";
+            txtModOutputPath.Text = @"C:\Users\Mercury\OneDrive\Escritorio\trash\output";
+            txtDEFSource.Text = @"C:\Users\Mercury\OneDrive\Escritorio\trash\\autoload\\models\\Deco\\Deco.def";
+            txtDEFCSVOutput.Text = @"C:\Users\Mercury\OneDrive\Escritorio\trash";
             //defaults
             chkListExportIntems.SetItemCheckState(0, CheckState.Checked);
             chkListExportIntems.SetItemCheckState(1, CheckState.Unchecked);
@@ -800,6 +800,7 @@ namespace MBlood_ModDocumentation
         {
             try
             {
+                richDEF2CSVOutputMsg.Text = string.Empty;
                 DefParser defParser = new DefParser();
                 StringBuilder errorMsg;
                 defParser.ReadDEF(txtDEFSource.Text, out errorMsg);
@@ -807,7 +808,7 @@ namespace MBlood_ModDocumentation
                 {
                     richDEF2CSVOutputMsg.Text = errorMsg.ToString();
                 }
-                defParser.WriteOutput(txtDEFCSVOutput.Text,"BUILDMyFlavor");
+                defParser.WriteOutput(txtDEFCSVOutput.Text,"BUILDMyFlavor.csv");
             }
             catch(Exception ex)
             {
